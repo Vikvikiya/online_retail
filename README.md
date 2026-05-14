@@ -47,7 +47,10 @@ The project includes:
 6. Category opportunity matrix
 7. RFM segmentation
 8. Statistical analysis of key hypotheses
-9. Visual packaging into a single HTML dashboard
+9. Retention and cohort analysis
+10. Impact vs effort prioritization
+11. Experiment roadmap and final decision memo
+12. Visual packaging into a single HTML dashboard
 
 ## Important Dataset Limitation
 
@@ -86,11 +89,14 @@ Because of that:
 - The portfolio is **highly concentrated**: `electronics.smartphone` accounts for `66.29%` of category revenue proxy.
 - Brand concentration is also high: `Apple + Samsung = 67.31%` of brand revenue proxy.
 - Most purchase sessions are **single-item**: average purchase session size is `1.18`, median is `1`.
+- Repeat customers are only `36.84%` of customers, but they generate `73.77%` of revenue proxy.
+- The October cohort shows `26.3%` month-1 retention, and the eligible 30-day repeat rate is `40.52%`.
 - From a retention perspective, a large share of customer value sits in **Champions** and **Loyal Customers**, while **Cannot Lose Them** already requires dedicated retention action.
 - Statistical tests confirm that:
   - smartphones convert materially better than the rest of the catalog
   - November has a different price mix than October
   - Apple operates in a significantly more premium price tier than Samsung
+- The best next business moves are not more traffic first, but conversion repair, retention, and protection of the concentrated revenue engine.
 
 ## Main Findings
 
@@ -244,6 +250,62 @@ Important note:
 ![Conversion Comparison](analysis/output/stats_conversion_comparison.png)
 ![Brand Price Boxplot](analysis/output/stats_brand_price_boxplot.png)
 
+### 12. Retention and Cohort Analysis
+
+- repeat customer share: `36.84%`
+- repeat revenue share: `73.77%`
+- average days to second purchase: `8.13`
+- median days to second purchase: `3`
+- repeat within 7 days: `25.17%`
+- repeat within 30 days: `40.52%`
+- October cohort month-1 retention: `26.3%`
+
+Interpretation:
+
+- repeat customers are not the majority of the customer base, but they drive most of the value
+- second purchases happen quickly for many customers, which suggests CRM timing should focus on the first week and first month
+- retention analysis makes the case stronger than RFM alone because it shows real behavioral continuation over time
+
+![Cohort Retention Heatmap](analysis/output/cohort_retention_heatmap.png)
+![Repeat Mix](analysis/output/retention_repeat_mix.png)
+![Days to Second Purchase](analysis/output/days_to_second_purchase.png)
+
+### 13. Decision Prioritization
+
+Top strategic priorities:
+
+1. Protect smartphone category economics
+2. Improve high-traffic / low-conversion categories
+3. Launch a retention play for `Cannot Lose Them`
+4. Convert `Potential Loyalists` into repeat buyers
+5. Improve cross-sell and bundling
+
+Interpretation:
+
+- this layer moves the project from descriptive analytics into business decision support
+- the most important senior-level shift is prioritization: not everything should be done at once
+- the project now identifies what should be protected, what should be optimized, and what should be tested next
+
+![Impact vs Effort Matrix](analysis/output/impact_effort_matrix.png)
+
+### 14. Experiment Roadmap
+
+Recommended tests:
+
+- desktop category PDP redesign
+- bundle recommendations on single-item flows
+- repeat-purchase CRM flow for `Potential Loyalists`
+- win-back campaign for `Cannot Lose Them`
+- traffic reallocation to niche high-conversion categories
+
+Interpretation:
+
+- each experiment is tied to a concrete analytical finding
+- the roadmap focuses on measurable business outcomes rather than generic “optimization”
+- this creates a bridge from analysis to product, CRM, and merchandising execution
+
+![Experiment Roadmap](analysis/output/ab_test_roadmap.png)
+
 ## Final Business Recommendations
 
 1. Protect the smartphone category as the main revenue engine through stock, pricing, product page quality, and promotional priority.
@@ -255,6 +317,10 @@ Important note:
    - convert `Potential Loyalists` into repeat purchasers
    - win back `Cannot Lose Them` and `At Risk` customers with targeted campaigns
 6. Add geography and order-level data in the next phase if the goal is true market expansion analysis or real basket economics.
+7. Use experiment sequencing rather than broad changes:
+   - fix high-traffic low-conversion categories first
+   - test retention flows second
+   - expand traffic to efficient niche categories third
 
 ## Project Limitations
 
@@ -276,6 +342,8 @@ analysis/
   04_category_opportunity_matrix.py
   05_rfm_segmentation.py
   06_statistical_analysis.py
+  07_retention_cohort_analysis.py
+  08_decision_memo.py
   dashboard.html
   output/
 README.md
@@ -301,6 +369,8 @@ python analysis/03_funnel_mix_eda.py
 python analysis/04_category_opportunity_matrix.py
 python analysis/05_rfm_segmentation.py
 python analysis/06_statistical_analysis.py
+python analysis/07_retention_cohort_analysis.py
+python analysis/08_decision_memo.py
 ```
 
 ## HTML Dashboard
@@ -308,6 +378,12 @@ python analysis/06_statistical_analysis.py
 All key visuals and concise business conclusions are collected in:
 
 - [analysis/dashboard.html](analysis/dashboard.html)
+
+Additional strategic outputs:
+
+- [analysis/output/final_business_decision_memo.md](analysis/output/final_business_decision_memo.md)
+- [analysis/output/decision_priority_matrix.csv](analysis/output/decision_priority_matrix.csv)
+- [analysis/output/ab_test_roadmap.csv](analysis/output/ab_test_roadmap.csv)
 
 ## Not Included In The Repository
 

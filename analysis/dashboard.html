@@ -247,6 +247,16 @@
           <span class="value">+132.6%</span>
           <span class="note">Conversion vs rest of catalog</span>
         </div>
+        <div class="card">
+          <span class="label">Repeat Revenue Share</span>
+          <span class="value">73.8%</span>
+          <span class="note">From repeat customers</span>
+        </div>
+        <div class="card">
+          <span class="label">October Retention</span>
+          <span class="value">26.3%</span>
+          <span class="note">Month-1 cohort retention</span>
+        </div>
       </div>
     </section>
 
@@ -544,6 +554,89 @@
     <section class="section">
       <div class="section-header">
         <div>
+          <p class="kicker">Retention</p>
+          <h2>Repeat customers are not the majority, but they drive most of the value</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="chart-box">
+          <img src="./output/cohort_retention_heatmap.png" alt="Cohort retention heatmap">
+        </div>
+        <aside class="insight-box">
+          <h3>Main conclusions</h3>
+          <ul>
+            <li>Only 36.84% of customers are repeat customers, but they generate 73.77% of revenue proxy.</li>
+            <li>The October cohort shows 26.3% month-1 retention, which means most first-time buyers still do not come back next month.</li>
+            <li>The median time to second purchase is only 3 days, so the first week after purchase is a critical CRM window.</li>
+          </ul>
+          <div class="note-box">
+            This is still a short-window retention view because the dataset only covers two months.
+          </div>
+        </aside>
+      </div>
+      <div class="grid" style="margin-top: 20px;">
+        <div class="chart-box">
+          <img src="./output/retention_repeat_mix.png" alt="Repeat mix">
+        </div>
+        <div class="chart-box">
+          <img src="./output/days_to_second_purchase.png" alt="Days to second purchase">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="kicker">Decision Layer</p>
+          <h2>The analysis now points to a prioritized action plan, not just descriptive findings</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="chart-box">
+          <img src="./output/impact_effort_matrix.png" alt="Impact effort matrix">
+        </div>
+        <aside class="insight-box">
+          <h3>Main conclusions</h3>
+          <ul>
+            <li>The top priorities are protecting smartphone economics, fixing high-traffic low-conversion categories, and launching retention plays for high-value dormant customers.</li>
+            <li>This moves the project into senior-level decision support because the analysis now explicitly ranks what should happen first.</li>
+            <li>The portfolio does not need more traffic first; it needs better monetization and better retention of already valuable behavior.</li>
+          </ul>
+          <div class="note-box">
+            Prioritization is where analytics becomes strategy: the goal is not to explain everything, but to sequence the next best moves.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="kicker">Experiment Roadmap</p>
+          <h2>The next phase should be test-driven, not intuition-driven</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="chart-box">
+          <img src="./output/ab_test_roadmap.png" alt="A/B test roadmap">
+        </div>
+        <aside class="insight-box">
+          <h3>Main conclusions</h3>
+          <ul>
+            <li>Best near-term A/B test: redesign product detail pages for high-traffic low-conversion categories like desktops.</li>
+            <li>Best lifecycle test: repeat-purchase flow for Potential Loyalists and win-back flow for Cannot Lose Them.</li>
+            <li>Best merchandising test: bundle recommendations on single-item flows and traffic reallocation to niche high-conversion categories.</li>
+          </ul>
+          <div class="note-box">
+            Strong analytics should end in measurable experiments with a primary metric and guardrails, not only in recommendations.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
           <p class="kicker">Data Gap</p>
           <h2>Country analysis is not available from this dataset</h2>
         </div>
@@ -568,7 +661,8 @@
           <li>Protect smartphones as the commercial engine, but reduce concentration risk over time.</li>
           <li>Prioritize high-traffic, low-conversion categories for near-term conversion improvement.</li>
           <li>Invest in bundling and cross-sell because most purchase sessions remain single-item.</li>
-          <li>Use RFM to build distinct retention plays for Champions, Potential Loyalists, and Cannot Lose Them.</li>
+          <li>Use RFM and cohort timing to build distinct retention plays for Champions, Potential Loyalists, and Cannot Lose Them.</li>
+          <li>Run experiments in sequence: fix wasted traffic first, then improve retention, then diversify efficient growth pockets.</li>
           <li>Bring in geography and order-level data if the next phase needs market expansion or true basket economics.</li>
         </ul>
       </div>
