@@ -77,6 +77,13 @@ Because of that:
 - basket size is measured at the **purchase-session proxy** level
 - country analysis is **not possible** without an external geography field
 
+## Data Source
+
+This project uses the Online Retail event dataset from Kaggle. The raw CSV files are not stored in this repository because of their size.
+
+Source:
+[ECommerce behavior data from multi-category store](https://www.kaggle.com/datasets/mkechinov/ecommerce-behavior-data-from-multi-category-store)
+
 ## Tools Used
 
 - `Python`
