@@ -1,0 +1,15 @@
+.DS_Store
+.cache/
+.venv/
+__pycache__/
+*.pyc
+agents.md
+
+# Large local data artifacts
+2019-Oct.csv
+2019-Nov.csv
+online_retail.duckdb
+
+# Optional local outputs that can be regenerated
+analysis/output/*.csv
+analysis/output/*.txt
