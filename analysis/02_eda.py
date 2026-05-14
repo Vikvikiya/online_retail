@@ -131,6 +131,8 @@ def plot_revenue_distribution(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
         FROM purchase_clean
         """
     ).fetchdf()
+    price_p95 = float(purchase_prices["price"].quantile(0.95))
+    zoom_prices = purchase_prices[purchase_prices["price"] <= price_p95].copy()
 
     fig, axes = plt.subplots(1, 2, figsize=(15, 5))
     sns.histplot(purchase_prices["price"], bins=60, ax=axes[0], color="#1f77b4")
@@ -138,10 +140,11 @@ def plot_revenue_distribution(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
     axes[0].set_xlabel("Purchase price")
     axes[0].set_ylabel("Count")
 
-    sns.histplot(purchase_prices["price"], bins=60, ax=axes[1], color="#ff7f0e", log_scale=(True, True))
-    axes[1].set_title("Purchase Price Distribution (Log Scale)")
+    sns.histplot(zoom_prices["price"], bins=50, ax=axes[1], color="#ff7f0e")
+    axes[1].set_title("Purchase Price Distribution (Up to P95)")
     axes[1].set_xlabel("Purchase price")
     axes[1].set_ylabel("Count")
+    axes[1].set_xlim(0, price_p95)
 
     fig.tight_layout()
     fig.savefig(OUTPUT_DIR / "revenue_distribution.png", dpi=160)
