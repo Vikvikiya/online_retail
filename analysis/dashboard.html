@@ -238,6 +238,11 @@
           <span class="note">Items per purchase session</span>
         </div>
         <div class="card">
+          <span class="label">Cart Abandonment</span>
+          <span class="value">62.0%</span>
+          <span class="note">Observed cart-stage loss</span>
+        </div>
+        <div class="card">
           <span class="label">Champions Share</span>
           <span class="value">42.4%</span>
           <span class="note">Of customer revenue proxy</span>
@@ -430,6 +435,31 @@
           </ul>
           <div class="note-box">
             The <code>Unknown</code> category still holds 10.45% of revenue proxy, so metadata quality is materially affecting category reporting.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="kicker">Cart Abandonment</p>
+          <h2>Cart-stage leakage is too large to ignore and got worse in November</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="chart-box">
+          <img src="./output/cart_abandonment.png" alt="Cart abandonment analysis">
+        </div>
+        <aside class="insight-box">
+          <h3>Main conclusions</h3>
+          <ul>
+            <li>Observed cart abandonment is 62.02% at the <code>user_session + product_id</code> cart level, with only 37.98% converting to purchase.</li>
+            <li>November cart abandonment rose to 65.25% versus 51.46% in October, which suggests worsening cart-stage efficiency rather than a stable baseline.</li>
+            <li><code>electronics.smartphone</code> carries the biggest abandoned-cart volume by scale, while lower-priced items under 50 abandon most often at 69.20%.</li>
+          </ul>
+          <div class="note-box">
+            This is a conservative proxy: it only counts explicit cart events and cannot see true checkout steps because there is no order ID.
           </div>
         </aside>
       </div>

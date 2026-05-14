@@ -33,12 +33,14 @@ sns.set_theme(style="whitegrid")
 
 
 def load_inputs() -> dict[str, pd.DataFrame]:
+    cart_summary_path = OUTPUT_DIR / "cart_abandonment_overview.csv"
     return {
         "rfm": pd.read_csv(OUTPUT_DIR / "rfm_segment_summary.csv"),
         "opportunity": pd.read_csv(OUTPUT_DIR / "category_opportunity_detailed.csv"),
         "stats": pd.read_csv(OUTPUT_DIR / "statistical_tests_summary.csv"),
         "retention": pd.read_csv(OUTPUT_DIR / "retention_repeat_summary.csv"),
         "category_mix": pd.read_csv(OUTPUT_DIR / "category_mix_summary.csv"),
+        "cart": pd.read_csv(cart_summary_path) if cart_summary_path.exists() else pd.DataFrame([{"cart_abandonment_rate_pct": None}]),
     }
 
 
@@ -47,14 +49,17 @@ def build_priorities(inputs: dict[str, pd.DataFrame]) -> pd.DataFrame:
     rfm = inputs["rfm"].set_index("segment")
     retention = inputs["retention"].iloc[0]
     category_mix = inputs["category_mix"]
+    cart = inputs["cart"].iloc[0]
     smartphone_share = float(category_mix.loc[category_mix["category_code"] == "electronics.smartphone", "revenue_share_pct"].iloc[0])
+    cart_rate = cart["cart_abandonment_rate_pct"]
+    cart_text = f"Observed cart abandonment is {cart_rate:.2f}% at the session-product level." if pd.notna(cart_rate) else "Cart-stage loss is visible in the funnel and should be measured directly."
 
     priorities = pd.DataFrame(
         [
             {
                 "initiative": "Improve high-traffic / low-conversion categories",
                 "focus_area": "Conversion optimization",
-                "evidence": "21 categories sit in the high-traffic/low-conversion bucket with 13.96M revenue proxy at risk.",
+                "evidence": f"21 categories sit in the high-traffic/low-conversion bucket with 13.96M revenue proxy at risk. {cart_text}",
                 "impact_score": 5,
                 "effort_score": 3,
                 "priority_type": "Quick win",
@@ -241,7 +246,7 @@ def write_memo(priorities: pd.DataFrame, experiments: pd.DataFrame, missing_data
         "",
         "## Context",
         "",
-        "This portfolio is commercially strong but structurally concentrated. Smartphones, Apple, and Samsung account for a disproportionate share of value. At the same time, there are clear conversion gaps, retention opportunities, and measurement limits.",
+        "This portfolio is commercially strong but structurally concentrated. Smartphones, Apple, and Samsung account for a disproportionate share of value. At the same time, there are clear conversion gaps, meaningful cart-stage leakage, retention opportunities, and measurement limits.",
         "",
         "## Top Priorities",
         "",
@@ -292,7 +297,7 @@ def write_memo(priorities: pd.DataFrame, experiments: pd.DataFrame, missing_data
             "",
             "## Final Recommendation",
             "",
-            "The best senior-level recommendation from this analysis is not to chase more top-line traffic first. The better move is to protect the concentrated revenue engine, improve conversion in wasted-traffic categories, and build a CRM retention layer around high-value and high-potential segments.",
+            "The best senior-level recommendation from this analysis is not to chase more top-line traffic first. The better move is to protect the concentrated revenue engine, repair cart-stage leakage and conversion in wasted-traffic categories, and build a CRM retention layer around high-value and high-potential segments.",
         ]
     )
     (OUTPUT_DIR / "final_business_decision_memo.md").write_text("\n".join(lines), encoding="utf-8")

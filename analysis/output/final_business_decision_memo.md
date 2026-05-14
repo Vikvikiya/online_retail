@@ -2,7 +2,7 @@
 
 ## Context
 
-This portfolio is commercially strong but structurally concentrated. Smartphones, Apple, and Samsung account for a disproportionate share of value. At the same time, there are clear conversion gaps, retention opportunities, and measurement limits.
+This portfolio is commercially strong but structurally concentrated. Smartphones, Apple, and Samsung account for a disproportionate share of value. At the same time, there are clear conversion gaps, meaningful cart-stage leakage, retention opportunities, and measurement limits.
 
 ## Top Priorities
 
@@ -14,7 +14,7 @@ This portfolio is commercially strong but structurally concentrated. Smartphones
 
 ### Improve high-traffic / low-conversion categories
 - Focus area: Conversion optimization
-- Evidence: 21 categories sit in the high-traffic/low-conversion bucket with 13.96M revenue proxy at risk.
+- Evidence: 21 categories sit in the high-traffic/low-conversion bucket with 13.96M revenue proxy at risk. Observed cart abandonment is 62.02% at the session-product level.
 - Expected outcome: Lift monetization of existing traffic without buying more demand.
 - Primary metric: Purchase-to-view conversion
 
@@ -66,4 +66,4 @@ This portfolio is commercially strong but structurally concentrated. Smartphones
 
 ## Final Recommendation
 
-The best senior-level recommendation from this analysis is not to chase more top-line traffic first. The better move is to protect the concentrated revenue engine, improve conversion in wasted-traffic categories, and build a CRM retention layer around high-value and high-potential segments.
+The best senior-level recommendation from this analysis is not to chase more top-line traffic first. The better move is to protect the concentrated revenue engine, repair cart-stage leakage and conversion in wasted-traffic categories, and build a CRM retention layer around high-value and high-potential segments.

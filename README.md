@@ -9,6 +9,7 @@ This project demonstrates a full analytics workflow on large-scale e-commerce da
 - data quality review
 - exploratory data analysis
 - funnel and assortment analysis
+- cart abandonment analysis
 - customer segmentation
 - statistical validation of key findings
 - business recommendations
@@ -19,6 +20,7 @@ This project demonstrates a full analytics workflow on large-scale e-commerce da
 - visualizations and summary charts
 - business-focused conclusions for every analysis block
 - RFM customer segmentation
+- cart abandonment measurement at the session-product level
 - statistical testing for key hypotheses
 - a single HTML dashboard with the final visuals and conclusions
 
@@ -43,14 +45,15 @@ The project includes:
 2. Cleaning logic and dataset limitation review
 3. Core EDA for revenue, trends, customers, products, and basket size
 4. Category funnel analysis
-5. Category and brand mix analysis
-6. Category opportunity matrix
-7. RFM segmentation
-8. Statistical analysis of key hypotheses
-9. Retention and cohort analysis
-10. Impact vs effort prioritization
-11. Experiment roadmap and final decision memo
-12. Visual packaging into a single HTML dashboard
+5. Cart abandonment analysis
+6. Category and brand mix analysis
+7. Category opportunity matrix
+8. RFM segmentation
+9. Statistical analysis of key hypotheses
+10. Retention and cohort analysis
+11. Impact vs effort prioritization
+12. Experiment roadmap and final decision memo
+13. Visual packaging into a single HTML dashboard
 
 ## Important Dataset Limitation
 
@@ -89,6 +92,7 @@ Because of that:
 - The portfolio is **highly concentrated**: `electronics.smartphone` accounts for `66.29%` of category revenue proxy.
 - Brand concentration is also high: `Apple + Samsung = 67.31%` of brand revenue proxy.
 - Most purchase sessions are **single-item**: average purchase session size is `1.18`, median is `1`.
+- Observed cart abandonment is `62.02%` at the `session + product` cart level, with November rising to `65.25%`.
 - Repeat customers are only `36.84%` of customers, but they generate `73.77%` of revenue proxy.
 - The October cohort shows `26.3%` month-1 retention, and the eligible 30-day repeat rate is `40.52%`.
 - From a retention perspective, a large share of customer value sits in **Champions** and **Loyal Customers**, while **Cannot Lose Them** already requires dedicated retention action.
@@ -171,7 +175,27 @@ Interpretation:
 
 ![Category Conversion](analysis/output/category_conversion.png)
 
-### 7. Category Revenue Mix
+### 7. Cart Abandonment
+
+- cart session-product pairs observed: `2,681,975`
+- cart abandonment rate: `62.02%`
+- cart-to-purchase rate: `37.98%`
+- October cart abandonment: `51.46%`
+- November cart abandonment: `65.25%`
+
+Interpretation:
+
+- cart-stage loss is too large to treat as normal leakage; it is a meaningful commercial problem on its own
+- the largest abandoned-cart volume sits in `electronics.smartphone`, `electronics.audio.headphone`, and `electronics.video.tv`, so fixing cart friction there can matter at scale
+- lower-priced items abandon the most (`69.20%` under 50), which suggests hesitation is not only about financing or high-ticket affordability
+
+Important note:
+
+- this is measured at the `user_session + product_id` level and requires an explicit observed cart event, so it is a conservative proxy rather than true checkout abandonment
+
+![Cart Abandonment](analysis/output/cart_abandonment.png)
+
+### 8. Category Revenue Mix
 
 - `electronics.smartphone` contributes `66.29%` of category revenue proxy
 
@@ -182,7 +206,7 @@ Interpretation:
 
 ![Category Revenue Mix](analysis/output/category_revenue_mix.png)
 
-### 8. Brand Revenue Mix
+### 9. Brand Revenue Mix
 
 - `Apple`: `47.26%`
 - `Samsung`: `20.05%`
@@ -195,7 +219,7 @@ Interpretation:
 
 ![Brand Revenue Mix](analysis/output/brand_revenue_mix.png)
 
-### 9. Category Opportunity Matrix
+### 10. Category Opportunity Matrix
 
 Interpretation:
 
@@ -205,7 +229,7 @@ Interpretation:
 
 ![Category Opportunity Matrix](analysis/output/category_opportunity_matrix.png)
 
-### 10. RFM Segmentation
+### 11. RFM Segmentation
 
 - `Champions`: `96,004` customers, `42.39%` revenue share
 - `Loyal Customers`: `67,963` customers, `14.74%` revenue share
@@ -221,7 +245,7 @@ Interpretation:
 ![RFM Segment Revenue](analysis/output/rfm_segment_revenue.png)
 ![RFM Heatmap](analysis/output/rfm_heatmap.png)
 
-### 11. Statistical Analysis
+### 12. Statistical Analysis
 
 Tested hypotheses:
 
@@ -250,7 +274,7 @@ Important note:
 ![Conversion Comparison](analysis/output/stats_conversion_comparison.png)
 ![Brand Price Boxplot](analysis/output/stats_brand_price_boxplot.png)
 
-### 12. Retention and Cohort Analysis
+### 13. Retention and Cohort Analysis
 
 - repeat customer share: `36.84%`
 - repeat revenue share: `73.77%`
@@ -270,7 +294,7 @@ Interpretation:
 ![Repeat Mix](analysis/output/retention_repeat_mix.png)
 ![Days to Second Purchase](analysis/output/days_to_second_purchase.png)
 
-### 13. Decision Prioritization
+### 14. Decision Prioritization
 
 Top strategic priorities:
 
@@ -288,7 +312,7 @@ Interpretation:
 
 ![Impact vs Effort Matrix](analysis/output/impact_effort_matrix.png)
 
-### 14. Experiment Roadmap
+### 15. Experiment Roadmap
 
 Recommended tests:
 
@@ -343,6 +367,7 @@ analysis/
   05_rfm_segmentation.py
   06_statistical_analysis.py
   07_retention_cohort_analysis.py
+  09_cart_abandonment_analysis.py
   08_decision_memo.py
   dashboard.html
   output/
@@ -370,6 +395,7 @@ python analysis/04_category_opportunity_matrix.py
 python analysis/05_rfm_segmentation.py
 python analysis/06_statistical_analysis.py
 python analysis/07_retention_cohort_analysis.py
+python analysis/09_cart_abandonment_analysis.py
 python analysis/08_decision_memo.py
 ```
 
